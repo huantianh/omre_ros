@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<robot name="omre" xmlns:xacro="http://ros.org/wiki/xacro">
+<xacro:include filename="$(find omre_description)/urdf/body.urdf.xacro"/>
+<xacro:include filename="$(find omre_description)/urdf/wheel.urdf.xacro"/>
+<xacro:include filename="$(find omre_description)/urdf/sensors/t265.urdf.xacro"/>
+
+<xacro:property name="M_PI" value="3.1415926535897931"/>
+<xacro:property name="cos" value="0.5"/>
+<xacro:property name="sin" value="0.866"/>
+
+<xacro:wheel name="wheel0" parent="base_link">
+	<origin xyz="-0.135 0 -0.1875" rpy="0 ${M_PI/2} ${M_PI}"/>
+</xacro:wheel>
+
+<xacro:wheel name="wheel1" parent="base_link">
+	<origin xyz="${cos*0.135} ${sin*0.135} -0.1875" rpy="0 ${M_PI/2} ${M_PI/3}"/>
+</xacro:wheel>
+
+<xacro:wheel name="wheel2" parent="base_link">
+	<origin xyz="${cos*0.135} -${sin*0.135} -0.1875" rpy="0 ${M_PI/2} -${M_PI/3}"/>
+</xacro:wheel>
+
+<xacro:t265 root_link="base_link">
+	<origin xyz="-0.117 0 -0.145" rpy="0 0 0"/>
+</xacro:t265>
+
+
+</robot>

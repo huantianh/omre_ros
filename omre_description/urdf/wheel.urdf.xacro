@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<robot name="omre_wheel" xmlns:xacro="http://ros.org/wiki/xacro">
+<xacro:macro name = "wheel" params="name parent *origin">
+	<link name = "${name}_link">
+	<visual>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+			<cylinder radius="0.03" length="0.02" />
+		</geometry>
+		<material name="blue">
+			<color rgba="0 0 1.0 1.0"/>
+		</material>
+	</visual>
+	</link>
+
+	<link name="${name}_motor_link">
+	<visual>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+			<cylinder radius="0.0125" length="0.073" />
+		</geometry>
+		<material name="blue">
+			<color rgba="0 0 1.0 0.7"/>
+		</material>
+	</visual>
+	</link>
+
+	<joint name="motor${name}_joint" type="continuous">
+		<axis xyz = "0 0 1"/>
+		<origin xyz="0 0 0.052" rpy="0 0 0"/>
+		<parent link="${name}_motor_link"/>
+		<child link="${name}_link"/>
+	</joint>
+
+	<joint name="${name}_motor_joint" type="fixed">
+		<xacro:insert_block name="origin"/>
+		<parent link="${parent}"/>
+		<child link="${name}_motor_link"/>
+	</joint>
+
+</xacro:macro>
+
+<!-- <link name="base_link"/>
+
+<xacro:wheel name="wheel0" parent="base_link">
+	<origin xyz="0 0 1" rpy="0 0 0"/>
+</xacro:wheel>
+
+<xacro:wheel name="wheel1" parent="base_link">
+	<origin xyz="-1 0 1" rpy="0 0 0"/>
+</xacro:wheel>
+
+<xacro:wheel name="wheel2" parent="base_link">
+	<origin xyz="1 0 1" rpy="0 0 0"/>
+</xacro:wheel> -->
+
+</robot>

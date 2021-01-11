@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<robot name="t265_sensor" xmlns:xacro="http://ros.org/wiki/xacro">
+<xacro:macro name = "t265" params="root_link *origin">
+<link name="camera_pose_frame">
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <box size="0.0125 0.108 0.0245" />
+    </geometry>
+    <material name="red">
+      <color rgba="1 0 0 1.0"/>
+    </material>
+  </visual>
+</link>
+
+<joint name="t265_joint" type="fixed">
+  <xacro:insert_block name="origin"/>
+  <parent link="camera_pose_frame"/>
+  <child link="${root_link}"/>
+</joint>
+
+</xacro:macro>
+
+
+<!-- <xacro:t265 root_link="base_link">
+	<origin xyz="0 0 1" rpy="0 0 0"/>
+</xacro:wheel> -->
+
+</robot>
